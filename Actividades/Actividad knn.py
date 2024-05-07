@@ -1,6 +1,13 @@
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import LabelEncoder
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
 import seaborn as sns
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from google.colab import drive #!cargar csv
 
 # Creamos una instancia con 1 vecino
 model = KNeighborsClassifier(n_neighbors=1)
@@ -21,7 +28,9 @@ iris_test = iris.sample(3, random_state=1112)
 # Creamos el conjunto de entrenamiento excluyendo las muestras de prueba
 iris_train = iris.drop(iris_test.index)
 
-#* print(iris_test)
+iris_test
+
+#* -------------------------------------------------
 
 # Dividimos las características y las etiquetas para el conjunto de entrenamiento
 y_train = iris_train.pop("target")
@@ -35,7 +44,7 @@ X_test = iris_test
 model.fit(x_train, y_train)
 
 
-#? prediccion sobre las 3 muestras
+#? prediccion sobre las 3 muestras -------------------------
 
 predictions = model.predict(X_test)
 print("Predicciones:", predictions) 
@@ -45,7 +54,7 @@ print("Predicciones:", predictions)
 #* la segunda muestra se predijo como clase 2 => Clase 2: Iris-virginica
 #* la tercera muestra se predijo como clase 0 => Clase 0: Iris-setosa
 
-#? porcentaje de acierto con un vecino 
+#? porcentaje de acierto con un vecino -------------------------
 
 accuracy = model.score(X_test, y_test) #* Precision
 print("Porcentaje de acierto con 1 vecino:", accuracy)
@@ -65,3 +74,5 @@ accuracy_3_neighbors = model_3_neighbors.score(X_test, y_test)
 print("Porcentaje de acierto con 3 vecinos:", accuracy_3_neighbors)
 #! Porcentaje de acierto con 3 vecinos: 1.0 (o 100%
 #* el modelo clasificó correctamente el 100% cuando se usaron 3 vecinos
+
+
