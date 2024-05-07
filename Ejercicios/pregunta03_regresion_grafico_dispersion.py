@@ -36,3 +36,4 @@ plt.plot(x_values, y_values, color='red', linestyle='--', label='Regresi√≥n Log√
 plt.legend()
 
 plt.show()
+

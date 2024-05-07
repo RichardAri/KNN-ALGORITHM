@@ -10,24 +10,25 @@ import matplotlib.pyplot as plt
 from google.colab import drive #!cargar csv
 
 # Lectura del archivo CSV
-df = pd.read_csv('/content/drive/My Drive/persona.csv') # persona = IRIS
+df = pd.read_csv('/content/drive/My Drive/persona.csv') 
 
-# Definición de características (X) y variable objetivo (y)
-X = df.drop('Outcome', axis=1)  # Características: todas las columnas excepto 'Outcome'
-y = df['Outcome']                # Variable objetivo: 'Outcome'
+# definicion de caracteristicas (X) y variable objetivo (y)
+X = df.drop('Outcome', axis=1)  # caracteristicas: todas las columnas excepto 'Outcome'
+y = df['Outcome']                # variable objetivo: 'Outcome'
 
-# División del conjunto de datos en conjuntos de entrenamiento y prueba (80% entrenamiento, 20% prueba)
+# division del conjunto de datos en conjuntos de entrenamiento y prueba (80% entrenamiento, 20% prueba)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Entrenamiento del modelo KNN
+# entrenamiento del modelo KNN
 model = KNeighborsClassifier()
 model.fit(X_train, y_train)
 
-# Predicciones sobre el conjunto de prueba
+# predicciones sobre el conjunto de prueba
 y_pred = model.predict(X_test)
 
-# Evaluación del modelo
+# precision del modelo
 accuracy = accuracy_score(y_test, y_pred)
 
 print(f"Precisión del modelo KNN: {accuracy:.2f}")
 #! Precisión del modelo KNN: 0.66
+
