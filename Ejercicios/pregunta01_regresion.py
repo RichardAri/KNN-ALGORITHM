@@ -28,8 +28,8 @@ def sigmoid(x):
 
 # Valores de x para la función logística
 x_values = np.linspace(df['Glucose'].min(), df['Glucose'].max(), 1000)
-# Predicción de los valores de y usando el modelo de regresión logística
-y_values = sigmoid(model.intercept_ + model.coef_ * x_values)
+# Predicción de las probabilidades usando el modelo de regresión logística
+y_values = model.predict_proba(x_values.reshape(-1, 1))[:, 1]
 
 # Gráfico de la función logística
 plt.figure(figsize=(10, 6))
